@@ -1,0 +1,22 @@
+<header>
+  <div class="mx-3 my-2">
+    <div class="flex flex-col md:flex-row justify-between items-center w-font-sans bg-white">
+      <%= link_to image_tag('logo.svg', alt: 'logo', class: 'm-4 mr-6 md:h-6 h-8'), root_path %>
+      <div class="flex flex-grow justify-evently">
+        <%= text_field_tag :search, "", placeholder: "Search for anything", class: "rounded-full md:w-full w-80 bg-gray-200 border-none text-gray-500 px-9" %>
+        <div class='absolute mx-2 my-3'>
+          <%= heroicon "search", variant: :outline, options: { class: "h-4 text-gray-500" } %>
+        </div>
+      </div>
+      <div class="md:flex-none md:flex-row flex flex-grow mt-1 md:mt-0 items-center">
+        <%= heroicon "heart", variant: :outline, options: { class: "text-indigo-700 m-2 md:ml-4 hover:cursor-pointer hover:scale-125 h-5" } %>
+        <div class="group">
+          <%= heroicon "shopping-cart", variant: :outline, options: { class: "text-indigo-700 m-2 mr-4 hover:cursor-pointer group-hover:animate-bounce duration-100 h-5" } %>
+        </div>
+        <%= link_to "Login", root_path, class: 'btn text-sm md:ml-1 my-2 hover:bg-indigo-800'%>
+      </div>
+      
+    </div>
+  </div>
+  <hr class="border-gray-200">
+</header>
