@@ -3,7 +3,7 @@
     <div class="flex flex-col md:flex-row justify-between items-center w-font-sans bg-white">
       <%= link_to image_tag('logo.svg', alt: 'logo', class: 'm-4 mr-6 md:h-6 h-8'), root_path %>
       <div class="flex flex-grow justify-evently">
-        <%= text_field_tag :search, "", placeholder: "Search for anything", class: "rounded-full md:w-full w-80 bg-gray-200 border-none text-gray-500 px-9" %>
+        <%= text_field_tag :search, "", placeholder: "Search for anything", class: "rounded-full md:w-full w-80 bg-gray-200 border-none text-gray-500 px-9 text-md" %>
         <div class='absolute mx-2 my-3'>
           <%= heroicon "search", variant: :outline, options: { class: "h-4 text-gray-500" } %>
         </div>
@@ -15,9 +15,9 @@
         </div>
         
         <% if signed_in? %>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn text-sm md:ml-1 my-2 hover:bg-indigo-800' %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn md:ml-1 my-2' %>
         <% else %>
-          <%= link_to "Sign in", new_user_session_path, class: 'btn text-sm md:ml-1 my-2 hover:bg-indigo-800'%>
+          <%= link_to "Sign in", new_user_session_path, class: 'btn md:ml-1 my-2' %>
         <% end %>
       </div>
       

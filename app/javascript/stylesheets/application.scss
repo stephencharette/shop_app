@@ -1,8 +1,30 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
+@layer base {
+  h1 {
+    @apply text-3xl font-medium
+  }
+
+  h2 {}
+
+  p {}
+
+  a {
+    @apply hover:text-indigo-700
+  }
+
+  input {
+    @apply rounded
+  }
+  
+  label {
+    @apply mr-2
+  }
+}
+
 .btn {
-  @apply px-5 py-2 bg-indigo-600 text-white rounded;
+  @apply px-5 py-2 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-800 hover:text-white cursor-pointer;
 }
 
 .pulsing-text {

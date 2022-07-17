@@ -1,0 +1,35 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='mt-5'>
+    <%= form.label :email, class: '' %>
+    <%= form.text_field :email, class: 'w-full rounded' %>
+  </div>
+
+  <%= form.fields_for :role do |role_form| %>
+    <div class='flex items-center mt-5'>
+      <%= role_form.label :admin %>
+      <%= role_form.check_box :admin, class: 'rounded' %>
+    </div>
+
+    <div class='flex mt-5 items-center'>
+      <%= role_form.label :employee %>
+      <%= role_form.check_box :employee, class: 'rounded' %>
+    </div>
+  <% end %>
+
+  <div class="flex items-center actions mt-5">
+    <div><%= link_to 'Back', users_path %></div>
+    <div class="ml-auto"><%= form.submit "Update User", class: 'btn justify-end' %></div>
+  </div>
+<% end %>

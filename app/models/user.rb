@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   after_create :generate_role
 
+  accepts_nested_attributes_for :role
+
   def generate_role
     self.create_role
   end
