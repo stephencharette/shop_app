@@ -13,7 +13,12 @@
         <div class="group">
           <%= heroicon "shopping-cart", variant: :outline, options: { class: "text-indigo-700 m-2 mr-4 hover:cursor-pointer group-hover:animate-bounce duration-100 h-5" } %>
         </div>
-        <%= link_to "Login", root_path, class: 'btn text-sm md:ml-1 my-2 hover:bg-indigo-800'%>
+        
+        <% if signed_in? %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn text-sm md:ml-1 my-2 hover:bg-indigo-800' %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path, class: 'btn text-sm md:ml-1 my-2 hover:bg-indigo-800'%>
+        <% end %>
       </div>
       
     </div>
