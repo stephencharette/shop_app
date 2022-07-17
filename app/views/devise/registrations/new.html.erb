@@ -1,0 +1,57 @@
+<div class="flex flex-grow h-screen">
+  
+  <div class="flex flex-col w-0 lg:w-1/2 bg-gradient-to-br from-indigo-100 to-pink-100">
+    <div class="hidden md:w-2/3 lg:flex lg:flex-col mx-20 mt-12">
+      <%= link_to image_tag('logo.svg', alt: 'logo', class: 'mr-6 h-6 mb-3'), root_path %>
+      <h2 class="mt-10 font-semibold text-3xl">Best Trade In Values On The Planet™</h2>
+      <%= image_tag 'hero2.avif', alt: 'logo', class: 'mr-6 fit-content xl:h-2/3 mt-10 mb-3' %>
+    </div>
+  </div>
+
+  <div class="mt-10 m-4 lg:m-10 lg:mt-10 w-full lg:w-1/2 md:w-2/3 md:m-auto md:mt-10">
+    <div class="flex flex-row mt-5 justify-end mb-5">
+      <p>Already have an account?</p>
+      <%= link_to "Log in", new_user_session_path, class: 'ml-1 text-md font-medium text-indigo-700 hover:text-indigo-900'%>
+    </div>
+    
+    <%= link_to image_tag('logo.svg', alt: 'logo', class: 'lg:hidden mr-6 h-5 lg:mb-16 mb-4 mt-5'), root_path %>
+    
+    <h1 class="text-xl font-semibold">Sign up to continue</h1>
+    
+    <div class="mt-5">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+        <div class="field">
+          <%= f.label :email, class: 'font-medium' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded w-full md:w-full' %>
+        </div>
+
+        <div class="field mt-5">
+          <%= f.label :password, class: 'font-medium' %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: 'rounded w-full md:w-full' %>
+        </div>
+
+        <div class="field mt-5">
+          <%= f.label :password_confirmation, class: 'font-medium' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded w-full md:w-full' %>
+        </div>
+        
+        <div class="flex field mt-5">
+          <%= check_box_tag :terms_of_service, "yes", false, class: 'rounded mt-1 mr-3' %>
+          <p class="text-md">I agree to the Mercari Terms of Serivice and Privacy Policy</p>
+          
+        </div>
+
+        <div class="actions mt-5">
+          <%= f.submit "Sign up", class: 'btn hover:cursor-pointer w-full' %>
+        </div>
+      <% end %>
+            
+      <%# render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

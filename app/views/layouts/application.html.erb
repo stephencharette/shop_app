@@ -16,10 +16,13 @@
   </head>
 
   <body>
-    <%= render partial: 'layouts/admin' %>
-    <%= render partial: 'layouts/notice' if false %>
-    <%= render partial: 'layouts/header' %>
-    <%= render partial: 'layouts/navigation' %>
+    <%= render partial: 'layouts/admin' if signed_in? && current_user.is_admin? %>
+    <%= render partial: 'layouts/notice' if current_user&.is_user? %>
+    <%= render partial: 'layouts/header' unless current_page_is_auth_path? %>
+    <%= render partial: 'layouts/navigation' unless current_page_is_auth_path? %>
+
+    <%# Add container here %>
     <%= yield %>
+
   </body>
 </html>

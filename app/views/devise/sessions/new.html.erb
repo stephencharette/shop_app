@@ -1,0 +1,51 @@
+<div class="flex flex-grow h-screen">
+  
+  <div class="flex flex-col w-0 lg:w-1/2 bg-gradient-to-br from-indigo-100 to-pink-100">
+    <div class="hidden md:w-2/3 lg:flex lg:flex-col mx-20 mt-12">
+      <%= link_to image_tag('logo.svg', alt: 'logo', class: 'mr-6 h-6 mb-3'), root_path %>
+      <h2 class="mt-10 font-semibold text-3xl">Best Trade In Values On The Planet™</h2>
+      <%= image_tag 'hero2.avif', alt: 'logo', class: 'mr-6 fit-content xl:h-2/3 mt-10 mb-3' %>
+    </div>
+  </div>
+
+  <div class="mt-10 m-4 lg:m-10 lg:mt-10 w-full lg:w-1/2 md:w-2/3 md:m-auto md:mt-10">
+    <div class="flex flex-row mt-5 justify-end mb-5">
+      <p>Don't have an account?</p>
+      <%= link_to "Sign Up", new_user_registration_path, class: 'ml-1 text-md font-medium text-indigo-700 hover:text-indigo-900'%>
+    </div>
+    
+    <%= link_to image_tag('logo.svg', alt: 'logo', class: 'lg:hidden mr-6 h-5 lg:mb-16 mb-4 mt-5'), root_path %>
+    
+    <h1 class="text-xl font-semibold">Log in to Mercari</h1>
+    
+    <div class="mt-5">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email, class: 'font-medium' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded w-full md:w-full' %>
+        </div>
+
+        <div class="field mt-5">
+          <%= f.label :password, class: 'font-medium'  %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: 'rounded w-full md:w-full' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex justify-end field mt-5">
+            <%# <div class="justify-start"> %>
+            <%# f.check_box :remember_me, class: 'rounded' %>
+            <%# f.label :remember_me, class: 'text-md' %>
+            <%# </div> %>
+            <%= link_to "Forgot password?", new_user_password_path, class: 'text-md font-medium text-indigo-700 hover:text-indigo-900' %>
+          </div>
+        <% end %>
+
+        <div class="actions mt-5">
+          <%= f.submit "Log in", class: 'btn hover:cursor-pointer w-full' %>
+        </div>
+      <% end %>
+
+      <%# render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
