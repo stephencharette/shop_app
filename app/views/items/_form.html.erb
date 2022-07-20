@@ -1,0 +1,66 @@
+<%= form_with(model: item) do |form| %>
+  <% if item.errors.any? %>
+    <div class="bg-red-100 border-t-4 mb-5 mt-2 border-red-300 rounded-b text-gray-700 px-4 py-2 shadow-md" role="alert">
+      <div class="flex">
+        <div class="py-1"><%= heroicon "information-circle", variant: :outline, options: { class: 'h-6 w-6 text-red-500 mr-3' } %></div>
+        <div>
+          <p class="font-medium">
+            <%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+            <ul>
+              <% item.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class='mt-5'>
+    <%= form.label :name, class: '' %>
+    <%= form.text_field :name, class: 'w-full rounded' %>
+  </div>
+
+  <div class='mt-5'>
+    <%= form.label :description, class: '' %>
+    <%= form.text_area :description, class: 'w-full rounded' %>
+  </div>
+
+  <div class='mt-5'>
+    <%= form.label :condition, class: '' %>
+    <div class="flex flex-col pt-1">
+      <% Item::conditions.each do |condition, enum| %>
+        <div class="flex items-center">
+          <%= form.radio_button :condition, condition, class: 'w-4 h-4 text-indigo-600 focus:ring-indigo-500 focus:ring-2' %>
+          <%= form.label "#{condition.capitalize}", class: 'py-1 ml-2 w-full text-gray-900' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='flex flex-col mt-5'>
+    <%= form.label :price %>
+    <% if item.new_record? %>
+      <%= form.number_field :price, step: :any, class: 'rounded md:w-1/3 w-full' %>
+    <% else %>
+      <%= form.number_field :price, value: number_to_currency(item.price.to_f, delimiter: '', unit: ''), step: :any, class: 'rounded md:w-1/3 w-full' %>
+    <% end %>
+  </div>
+
+  <div class='flex flex-col mt-5'>
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, step: :any, class: 'rounded md:w-1/3 w-full' %>
+  </div>
+  
+  <div class='flex items-center mt-5'>
+    <%= form.label :active %>
+    <%= form.check_box :active, class: 'rounded' %>
+  </div>
+
+  <div class="flex items-center actions mt-5">
+    <div><%= link_to 'Back', :back, class: "gray-btn" %></div>
+    <div class="ml-auto"><%= form.submit item.new_record? ? "Create Item" : "Update Item", class: "btn" %></div>
+  </div>
+<% end %>

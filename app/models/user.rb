@@ -6,6 +6,8 @@ class User < ApplicationRecord
   
   has_one :role, dependent: :destroy
 
+  validates_presence_of :email
+  
   validates_uniqueness_of :email
 
   after_create :generate_role

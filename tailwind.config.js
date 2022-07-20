@@ -13,6 +13,14 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    backgroundImage: {
+      'gameboy': "url('../public/images/gameboy.avif')",
+    },
+    extend: {
+      screens: {
+        '3xl': '1600px',
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',

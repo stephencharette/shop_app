@@ -17,29 +17,17 @@
 
   <body>
     <%= render partial: 'layouts/admin' if signed_in? && current_user.is_admin? %>
-    <%= render partial: 'layouts/notice' unless current_page_is_auth_path? unless current_user.is_admin? %>
+    <%= render partial: 'layouts/banner' unless current_page_is_auth_path? unless current_user&.is_admin? %>
     <%= render partial: 'layouts/header' unless current_page_is_auth_path? %>
     <%= render partial: 'layouts/navigation' unless current_page_is_auth_path? %>
-
     
     <% if current_page_is_auth_path? %>
       <%= yield %>
     <% else %>
-      <div class="mx-20 my-10">
-        <p id="notice" class=''></p>
-        <% if notice %>
-        <div class="bg-teal-100 border-t-4 mb-5 border-teal-500 rounded-b text-gray-700 px-4 py-2 shadow-md" role="alert">
-          <div class="flex items-center">
-            <div class="py-1"><%= heroicon "information-circle", variant: :outline, options: { class: 'h-6 w-6 text-teal-500 mr-3' } %></div>
-            <div>
-              <p class="font-medium"><%= notice %></p>
-            </div>
-          </div>
-        </div>
-        <% end %>
+      <div class="mx-5 md:mx-10 my-10 lg:mx-20">
+        <%= render partial: 'layouts/notice', notice: notice if notice %>
         <%= yield %>
       </div>
     <% end %>
-
   </body>
 </html>

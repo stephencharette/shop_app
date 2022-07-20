@@ -1,5 +1,8 @@
-<div class="bg-gradient-to-r from-indigo-100 to-pink-100 h-10 text-black items-center text-xs flex flex-row justify-center hidden md:flex">
-  <p class="">🕹️ Win A Game A Day!</p>
-  <%= link_to "Try Now!", root_path, class: 'pl-1 font-bold underline' %>
-  <%= heroicon "x", variant: :outline, options: { class: "pl-1 h-3.5 hover:cursor-pointer" } %>
+<div class="bg-teal-100 border-t-4 mb-5 border-teal-500 rounded-b text-gray-700 px-4 py-2 shadow-md" role="alert">
+  <div class="flex items-center">
+    <div class="py-1"><%= heroicon "information-circle", variant: :outline, options: { class: 'h-6 w-6 text-teal-500 mr-3' } %></div>
+    <div>
+      <p class="font-medium"><%= notice %></p>
+    </div>
+  </div>
 </div>

@@ -10,7 +10,13 @@
   </div>
 </div> %>
 
+<div class="max-w-5xl m-auto">
+  
+  <% if signed_in? %>
+    <h3 class="font-medium text-3xl">Welcome Back!</h3>
+  <% end %>
 
-<% if signed_in? %>
-  <h3 class="font-medium text-3xl">Welcome Back!</h3>
-<% end %>
+  <div class="mt-5 max-w-5xl m-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
+      <%= render Item.all %>
+  </div>
+</div>

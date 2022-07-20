@@ -1,0 +1,15 @@
+<%= link_to item_path(item), class: "group" do %>
+  <div class="cursor-pointer overflow-hidden">
+    <%= image_tag 'nes.avif', alt: '', class: 'w-full duration-200' %>
+    <div class="pt-2">
+      <div class="font-semibold">
+        <p class="truncate"><%= item.name %></p>
+        <span class="brand-bubble text-xs">Nintendo</span></div>
+    </div>
+    <div class="flex flex-row pb-2 items-center">
+      <div class="max-w-10">
+        <p class="text-lg font-semibold group-hover:text-black"><%= number_to_currency(item.price) %></p>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,74 @@
+<div class="lg:max-w-5xl m-auto">
+  <div class="lg:grid grid-cols-5 gap-4 lg:gap-5 mb-11">
+    <div class="lg:col-span-3 cursor-pointer overflow-hidden lg:max-w-2/3">
+      <%= image_tag 'nes.avif', alt: '', class: 'w-full  duration-200' %>
+    </div>
+    <div class="flex flex-col pt-5 lg:col-span-2 lg:pt-0">
+      <div class="flex items-center">
+        <p class="text-xs text-gray-500">Updated <%= time_ago_in_words(@item.updated_at) %> ago</p>
+        <% if current_user&.is_admin? %>
+          <%= link_to edit_item_path(@item), class: "text-gray-500 hover:text-gray-900 ml-2" do %>
+            <%= heroicon "pencil-alt", variant: :outline, options: { class: "h-5" } %>
+          <% end %>
+        <% end %>
+      </div>
+      <h1 class="pt-2 text-3xl font-medium lg:text-2xl xl:text-3xl">Nintendo Gamecube Microcon Controller Mad Catz Orange Good Condition</h1>
+      <div class="pt-2"><span class="brand-bubble text-md">Nintendo</span></div>
+
+      <div class="pt-5">
+        <h2 class="text-3xl lg:text-2xl font-medium"><%= number_to_currency(@item.price) %></h2>
+      </div>
+
+      <div class="mt-5 grid grid-cols-2 gap-5 lg:flex flex-col lg:gap-0 xl:grid cols-2 xl:gap-3">
+        <div class="w-full justify-self-center gray-btn"><%= link_to "Like this item", "", class: "hover:text-gray-800" %></div>
+        <div class="w-full justify-self-center lg:mt-3 xl:mt-0 btn text-center"><%= link_to "Add to cart", "", class: "hover:text-white" %></div>
+        <div class="col-span-2 lg:mt-2 xl:mt-0">
+          <div class="w-full mt-1 justify-self-center text-right bg-gray-200 col-span-2 md:col-start-2 group">
+            <div class="flex items-center justify-center w-full md:w-54">
+              <div class="flex grow mx-2">
+                <p class="text-md m-auto font-semibold hover:underline hover:cursor-pointer">Trade-in today and get up to $6</p>
+              </div>
+              <%= link_to "Trade", root_path, class: "ml-auto bg-emerald-600 hover:bg-emerald-700 text-white text-xl py-4 px-3 hover:text-white" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  
+  </div>
+
+  <hr>
+
+  <div class="lg:grid grid-cols-5 gap-4 lg:gap-5 mb-10">
+    <div class="pt-5 lg:col-span-3">
+      <h3 class="font-medium text-lg mt-5">Used sell price historical data</h3>
+      <div class="mt-3"><%= area_chart({"2018-09" => 50, "2018-09" => 50, "2019-01" => 45, "2019-02" => 48, "2019-09" => 30, "2021-09" => 10}, prefix: "$", precision: 2) %></div>
+    </div>
+    
+    <div class="flex flex-col mt-5 lg:col-span-2 lg:pt-0">
+      <div class="mt-6">
+        <h3 class="font-medium text-lg">Overview</h3>
+        <div class="grid grid-cols-5">
+          <p class="text-gray-500 mt-3 col-span-2">Condition</p><p class="col-span-3 mt-3"><%= @item.condition.capitalize %></p>
+          <p class="text-gray-500 mt-3 col-span-2">Brand</p><p class="col-span-3 mt-3">Nintendo</p>
+          <p class="text-gray-500 mt-3">Category</p>
+        </div>
+      </div>
+
+      <div class="pt-6">
+        <p class="font-medium text-lg">Details</p>
+        <div class="grid grid-cols-5">
+          <p class="text-gray-500 mt-3 col-span-2">Posted</p><p class="col-span-3 mt-3"><%= @item.created_at %></p>
+        </div>
+      </div>
+
+      <div class="pt-6 w-3/4 lg:w-full">
+        <p class="font-medium text-lg">Description</p>
+        <p class="pt-2 text-sm text-gray-700"><%= @item.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Beautiful icon rails wrapper
 gem "heroicon"
 
+# Chart library
+gem "chartkick"
+
 # Session management
 gem 'devise', '4.8.1'
 

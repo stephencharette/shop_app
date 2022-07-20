@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Items</h1>
+
+<table class="item-table">
+  <thead>
+    <tr>
+      <th class="">Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= link_to item.name, item_path(item) %></td>
+        <td><%= item.price %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.active %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="mt-5">
+  <%= link_to 'New Item', new_item_path, class: "btn" %>
+</div>
