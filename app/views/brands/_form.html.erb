@@ -1,0 +1,36 @@
+<%= form_with(model: brand) do |form| %>
+  <% if brand.errors.any? %>
+    <div class="bg-red-100 border-t-4 mb-5 mt-2 border-red-300 rounded-b text-gray-700 px-4 py-2 shadow-md" role="alert">
+      <div class="flex">
+        <div class="py-1"><%= heroicon "information-circle", variant: :outline, options: { class: 'h-6 w-6 text-red-500 mr-3' } %></div>
+        <div>
+          <p class="font-medium">
+            <%= pluralize(brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+
+            <ul>
+              <% brand.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class='mt-5'>
+    <%= form.label :name, class: '' %>
+    <%= form.text_field :name, class: 'w-full rounded' %>
+  </div>
+  
+  <div class='flex items-center mt-5'>
+    <%= form.label :active %>
+    <%= form.check_box :active, class: 'rounded' %>
+  </div>
+
+  <div class="flex items-center actions mt-5">
+    <div><%= link_to 'Back', brands_path, class: "gray-btn" %></div>
+    <div class="ml-auto"><%= form.submit brand.new_record? ? "Create Brand" : "Update Brand", class: "btn" %></div>
+  </div>
+<% end %>
+

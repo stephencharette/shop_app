@@ -29,6 +29,22 @@
   </div>
 
   <div class='mt-5'>
+    <%= form.label :brand, class: '' %>
+    
+    <div class="flex relative flex-grow justify-evently">
+      <%= text_field_tag :search, "", placeholder: "Search for brand", class: "rounded mb-1 w-full border-none text-gray-500 px-9 text-md", autocomplete: "off", id: 'brand_search' %>
+      <div class='absolute mx-2 my-3'>
+        <%= heroicon "search", variant: :outline, options: { class: "h-4 text-gray-500" } %>
+      </div>
+      <div class='absolute right-3 my-3'>
+        <%= heroicon "x", variant: :outline, options: { class: "h-4 text-gray-500 cursor-pointer", id: 'item_brand_search_clear' } %>
+      </div>
+    </div>
+
+    <%= form.select :brand_id, options_for_select(Brand.all.pluck(:name, :id), @item.brand_id), { prompt: "... waiting for selection" }, { class: 'rounded w-full', id: 'item_brand_dropdown' } %>
+  </div>
+
+  <div class='mt-5'>
     <%= form.label :condition, class: '' %>
     <div class="flex flex-col pt-1">
       <% Item::conditions.each do |condition, enum| %>
@@ -60,7 +76,7 @@
   </div>
 
   <div class="flex items-center actions mt-5">
-    <div><%= link_to 'Back', :back, class: "gray-btn" %></div>
+    <div><%= link_to 'Back', items_path, class: "gray-btn" %></div>
     <div class="ml-auto"><%= form.submit item.new_record? ? "Create Item" : "Update Item", class: "btn" %></div>
   </div>
 <% end %>

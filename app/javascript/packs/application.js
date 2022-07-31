@@ -9,6 +9,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "stylesheets/application.scss"
 import "chartkick/chart.js"
+require('jquery')
+global.$ = global.jQuery = require('jquery');
+var dt      = require( 'datatables.net' );
+require("packs/brands")
 
 Rails.start()
 Turbolinks.start()

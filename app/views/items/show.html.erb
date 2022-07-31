@@ -12,8 +12,8 @@
           <% end %>
         <% end %>
       </div>
-      <h1 class="pt-2 text-3xl font-medium lg:text-2xl xl:text-3xl">Nintendo Gamecube Microcon Controller Mad Catz Orange Good Condition</h1>
-      <div class="pt-2"><span class="brand-bubble text-md">Nintendo</span></div>
+      <h1 class="pt-2 text-3xl font-medium lg:text-2xl xl:text-3xl"><%= @item.name %></h1>
+      <div class="pt-2"><span class="brand-bubble text-md"><%= @item.brand.name %></span></div>
 
       <div class="pt-5">
         <h2 class="text-3xl lg:text-2xl font-medium"><%= number_to_currency(@item.price) %></h2>
@@ -21,7 +21,7 @@
 
       <div class="mt-5 grid grid-cols-2 gap-5 lg:flex flex-col lg:gap-0 xl:grid cols-2 xl:gap-3">
         <div class="w-full justify-self-center gray-btn"><%= link_to "Like this item", "", class: "hover:text-gray-800" %></div>
-        <div class="w-full justify-self-center lg:mt-3 xl:mt-0 btn text-center"><%= link_to "Add to cart", "", class: "hover:text-white" %></div>
+        <div class="w-full justify-self-center lg:mt-3 xl:mt-0 btn text-center"><%= link_to "Add to cart", "", class: "hover:text-white text-white" %></div>
         <div class="col-span-2 lg:mt-2 xl:mt-0">
           <div class="w-full mt-1 justify-self-center text-right bg-gray-200 col-span-2 md:col-start-2 group">
             <div class="flex items-center justify-center w-full md:w-54">
@@ -51,8 +51,8 @@
       <div class="mt-6">
         <h3 class="font-medium text-lg">Overview</h3>
         <div class="grid grid-cols-5">
-          <p class="text-gray-500 mt-3 col-span-2">Condition</p><p class="col-span-3 mt-3"><%= @item.condition.capitalize %></p>
-          <p class="text-gray-500 mt-3 col-span-2">Brand</p><p class="col-span-3 mt-3">Nintendo</p>
+          <p class="text-gray-500 mt-3 col-span-2">Condition</p><p class="col-span-3 mt-3"><%= @item.condition.to_s.titleize %></p>
+          <p class="text-gray-500 mt-3 col-span-2">Brand</p><p class="col-span-3 mt-3"><%= @item.brand.name %></p>
           <p class="text-gray-500 mt-3">Category</p>
         </div>
       </div>

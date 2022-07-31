@@ -3,11 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_one :role, dependent: :destroy
 
   validates_presence_of :email
-  
+
   validates_uniqueness_of :email
 
   after_create :generate_role
@@ -15,18 +15,18 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :role
 
   def generate_role
-    self.create_role
+    create_role
   end
 
   def is_admin?
-    self.role.admin
+    role.admin
   end
 
   def is_employee?
-    self.role.employee
+    role.employee
   end
 
   def is_user?
-    (self.role.employee.nil? || !self.role.employee) && (self.role.admin.nil? || !self.role.admin)
+    (role.employee.nil? || !role.employee) && (role.admin.nil? || !role.admin)
   end
 end

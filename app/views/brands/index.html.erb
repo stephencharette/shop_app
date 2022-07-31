@@ -1,0 +1,28 @@
+<div class="md:max-w-5xl m-auto">
+  <div class="flex">
+    <h1 class="font-medium text-3xl">Brands</h1>
+    <%= link_to 'New Brand', new_brand_path, class: "btn ml-auto" %>
+  </div>
+
+  <table class="brand-table">
+    <thead>
+      <tr>
+        <th class="">Name</th>
+        <th>Active</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @brands.each do |brand| %>
+        <tr>
+          <td><%= link_to brand.name, brand_path(brand) %></td>
+          <td><%= brand.active ? "Yes" : "No" %></td>
+          <td class="hover:bg-gradient-to-br from-indigo-100 to-pink-100 text-center"><%= link_to 'Edit', edit_brand_path(brand) %></td>
+          <td class="hover:bg-gradient-to-br from-indigo-100 to-pink-100 text-center"><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

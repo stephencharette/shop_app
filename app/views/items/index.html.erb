@@ -1,33 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="md:max-w-5xl m-auto">
+  <h1 class="font-medium text-3xl mb-2">Items</h1>
 
-<h1>Items</h1>
-
-<table class="item-table">
-  <thead>
-    <tr>
-      <th class="">Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Active</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
+  <table id="items-datatable" class="w-full" data-source="<%= items_path(format: :json) %>" data-turbolinks="false">
+    <thead>
       <tr>
-        <td><%= link_to item.name, item_path(item) %></td>
-        <td><%= item.price %></td>
-        <td><%= item.quantity %></td>
-        <td><%= item.active %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Active</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="mt-5">
-  <%= link_to 'New Item', new_item_path, class: "btn" %>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <div class="flex mt-5">
+    <%= link_to 'New Item', new_item_path, class: "btn ml-auto" %>
+  </div>
+  
 </div>
+
+<script>
+  items_table = $('#items-datatable').DataTable({
+    processing: true,
+    stateSave: true,
+    serverSide: true,
+    ajax: {
+      url: $('#items-datatable').data('source')
+    },
+    order: [[0, 'asc']],
+    columns: [
+      { data: "name" },
+      { data: "brand" },
+      { data: "price" },
+      { data: "quantity" },
+      { data: "active" },
+      { data: "edit", orderable: false, width: "1%" },
+      { data: "destroy", orderable: false, width: "1%" },
+    ],
+  });
+</script>

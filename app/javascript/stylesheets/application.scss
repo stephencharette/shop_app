@@ -2,7 +2,14 @@
 @import "tailwindcss/components";
 
 @layer base {
+  // * {
+  //   @apply text-gray-800
+  // }
   h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-800
+  }
+
+  p, a, td, tr {
     @apply text-gray-800
   }
 

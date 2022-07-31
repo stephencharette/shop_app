@@ -1,27 +1,38 @@
-<h1 class="">Users</h1>
+<div class="md:max-w-5xl m-auto">
+  <h1 class="font-medium text-3xl mb-2">Users</h1>
 
-<table class="w-full">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Employee</th>
-      <th>Admin</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <table id="users-datatable" class="w-full" data-source="<%= users_path(format: :json) %>" data-turbolinks="false">
+    <thead>
       <tr>
-        <td><%= user.email %></td>
-        <td><%= user.role.employee ? "Yes" : "No" %></td>
-        <td><%= user.role.admin ? "Yes" : "No" %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Email</th>
+        <th>Employee</th>
+        <th>Admin</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
-<br>
+  <br>
+</div>
+
+<script>
+  users_table = $('#users-datatable').DataTable({
+    processing: true,
+    stateSave: true,
+    serverSide: true,
+    ajax: {
+      url: $('#users-datatable').data('source')
+    },
+    order: [[0, 'asc']],
+    columns: [
+      { data: "email" },
+      { data: "employee" },
+      { data: "admin" },
+      { data: "edit", orderable: false, width: "1%" },
+      { data: "destroy", orderable: false, width: "1%" },
+    ],
+  });
+</script>
