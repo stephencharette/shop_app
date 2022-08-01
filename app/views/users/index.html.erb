@@ -22,6 +22,7 @@
   users_table = $('#users-datatable').DataTable({
     processing: true,
     stateSave: true,
+    pageLength: 50,
     serverSide: true,
     ajax: {
       url: $('#users-datatable').data('source')

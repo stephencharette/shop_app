@@ -1,5 +1,8 @@
 <div class="md:max-w-5xl m-auto">
-  <h1 class="font-medium text-3xl mb-2">Items</h1>
+  <div class="flex mt-5 mb-3">
+    <h1 class="font-medium text-3xl ">Items</h1>
+    <%= link_to 'New Item', new_item_path, class: "btn ml-auto" %>
+  </div>
 
   <table id="items-datatable" class="w-full" data-source="<%= items_path(format: :json) %>" data-turbolinks="false">
     <thead>
@@ -16,9 +19,6 @@
     <tbody>
     </tbody>
   </table>
-  <div class="flex mt-5">
-    <%= link_to 'New Item', new_item_path, class: "btn ml-auto" %>
-  </div>
   
 </div>
 
@@ -27,6 +27,7 @@
     processing: true,
     stateSave: true,
     serverSide: true,
+    pageLength: 50,
     ajax: {
       url: $('#items-datatable').data('source')
     },

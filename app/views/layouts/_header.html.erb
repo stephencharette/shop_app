@@ -9,7 +9,9 @@
         </div>
       </div>
       <div class="md:flex-none md:flex-row flex flex-grow mt-1 md:mt-0 items-center">
-        <%= heroicon "heart", variant: :outline, options: { class: "text-indigo-700 m-2 md:ml-4 hover:cursor-pointer hover:scale-125 h-5" } %>
+        <%= link_to favorites_path do %>
+          <%= heroicon "heart", variant: :outline, options: { class: "text-indigo-700 m-2 md:ml-4 hover:cursor-pointer hover:scale-125 h-5" } %>
+        <% end %>
         <div class="group">
           <%= heroicon "shopping-cart", variant: :outline, options: { class: "text-indigo-700 m-2 mr-4 hover:cursor-pointer group-hover:animate-bounce duration-100 h-5" } %>
         </div>

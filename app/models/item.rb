@@ -1,5 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :brand
+
+  has_many :favorites
+
   validates_uniqueness_of :name
   validates_presence_of :name, :price, :quantity
   validates_numericality_of :price, greater_than: 0.0
