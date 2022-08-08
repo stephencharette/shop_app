@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :brand
 
   has_many :favorites
+  has_many :cart_items
 
   validates_uniqueness_of :name
   validates_presence_of :name, :price, :quantity

@@ -1,0 +1,50 @@
+<%= form_for cart do |form| %>
+  <% if cart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+
+      <ul>
+        <% cart.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col">
+    <div class="flex">
+      <div class="ml-auto">Price</div>
+    </div>
+    <hr>
+    <% cart.cart_items.each do |cart_item| %>
+      <div class="flex flex-row my-5">
+        <%= image_tag 'nes.avif', alt: '', class: 'w-40 duration-200' %>
+        <div class="flex flex-col ml-5 grow">
+          <div class="flex items-center">
+            <h3 class="font-medium"><%= cart_item.item.name %></h3>
+            <h4 class="text-lg ml-auto"><%= number_to_currency(cart_item.item.price) %></h4>
+          </div>
+          <p class="mt-0"><%= cart_item.brand.name %></p>
+          <div class="flex flex-col mt-auto">
+            <%= fields_for cart_item do |cart_item_form| %>
+              <div class="flex items-center">
+                <%= cart_item_form.label :quantity %>
+                <%= cart_item_form.number_field :quantity, value: cart_item.quantity, id: dom_id(cart_item), class: "text-sm w-14 border-indigo-700 rounded-lg text-center" %>
+                <p class="mx-3 text-xs select-none">|</p>
+                <%= link_to 'Delete', cart_item_path(cart_item.id), method: :delete, class: 'text-xs' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    <div class="flex mt-2">
+      <div class="ml-auto text-lg"><h5 id='total'>Subtotal (<%= pluralize(cart.items.count, 'item') %>): <%= number_to_currency(@cart.total) %></h5></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Proceed to checkout", class: 'btn' %>
+  </div>
+<% end %>

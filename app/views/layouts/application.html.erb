@@ -25,6 +25,7 @@
       <%= yield %>
     <% else %>
       <div class="mx-5 md:mx-10 my-10 lg:mx-20">
+        <%= render partial: 'layouts/alert', notice: alert if alert %>
         <%= render partial: 'layouts/notice', notice: notice if notice %>
         <%= yield %>
       </div>

@@ -13,6 +13,10 @@
     @apply text-gray-800
   }
 
+  input[type=number] {
+    @apply border-indigo-700 rounded-lg
+  }
+
   p {}
 
   a {

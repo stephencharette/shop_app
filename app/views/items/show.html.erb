@@ -19,30 +19,41 @@
         <h2 class="text-3xl lg:text-2xl font-medium"><%= number_to_currency(@item.price) %></h2>
       </div>
 
-      <div class="mt-5 grid grid-cols-2 gap-5 lg:flex flex-col lg:gap-0 xl:grid cols-2 xl:gap-3">
-        <% if current_user.items.include?(@item) %>
-          <%= link_to favorite_path(current_user.favorites.find_by(item_id: @item.id)), method: :delete do %>
-            <div class="w-full justify-self-center gray-btn"><p class="hover:text-gray-800">Unlike this item</p></div>
+      <% if @item.quantity > 0 %>
+        <p class="text-green-700 font-medium">In Stock</p>
+      <% else %>
+        <p class="text-red-700 font-medium">Out of Stock</p>
+      <% end %>
+      <%= form_with model: CartItem.new do |cart_item_form| %>
+        <%= cart_item_form.hidden_field :item_id, value: @item.id %>
+        <div class="mt-5 grid grid-cols-2 gap-5 lg:flex flex-col lg:gap-0 xl:grid cols-2 xl:gap-3">
+          <div class="flex col-span-2 items-center ml-auto md:mb-4 mg:mb-0">
+            <%= cart_item_form.label :quantity %>
+            <%= cart_item_form.number_field :quantity, value: 1, max: @item.quantity, min: 0, class: "border-indigo-700 rounded-lg w-20" %>
+          </div>
+          <% if current_user.items.include?(@item) %>
+            <%= link_to favorite_path(current_user.favorites.find_by(item_id: @item.id)), method: :delete do %>
+              <div class="w-full justify-self-center gray-btn"><p class="hover:text-gray-800">Unlike this item</p></div>
+            <% end %>
+          <% else %>
+            <%= link_to favorites_path(item_id: @item.id), method: :post do %>
+              <div class="w-full justify-self-center gray-btn"><p class="hover:text-gray-800">Like this item</p></div>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to favorites_path(item_id: @item.id), method: :post do %>
-            <div class="w-full justify-self-center gray-btn"><p class="hover:text-gray-800">Like this item</p></div>
-          <% end %>
-        <% end %>
-        <div class="w-full justify-self-center lg:mt-3 xl:mt-0 btn text-center"><%= link_to "Add to cart", "", class: "hover:text-white text-white" %></div>
-        <div class="col-span-2 lg:mt-2 xl:mt-0">
-          <div class="w-full mt-1 justify-self-center text-right bg-gray-200 col-span-2 md:col-start-2 group">
-            <div class="flex items-center justify-center w-full md:w-54">
-              <div class="flex grow mx-2">
-                <p class="text-md m-auto font-semibold hover:underline hover:cursor-pointer">Trade-in today and get up to $6</p>
-              </div>
-              <%= link_to "Trade", root_path, class: "ml-auto bg-emerald-600 hover:bg-emerald-700 text-white text-xl py-4 px-3 hover:text-white" %>
+          <div class="w-full justify-self-center lg:mt-3 xl:mt-0 btn text-center"><%= cart_item_form.submit "Add to cart", class: "hover:text-white text-white" %></div>
+        </div>
+      <% end %>
+      <div class="col-span-2 lg:mt-2 xl:mt-0">
+        <div class="w-full mt-1 justify-self-center text-right bg-gray-200 col-span-2 md:col-start-2 group">
+          <div class="flex items-center justify-center w-full md:w-54 mt-3">
+            <div class="flex grow mx-2">
+              <p class="text-md m-auto font-semibold hover:underline hover:cursor-pointer">Trade-in today and get up to $6</p>
             </div>
+            <%= link_to "Trade", root_path, class: "ml-auto bg-emerald-600 hover:bg-emerald-700 text-white text-xl py-4 px-3 hover:text-white" %>
           </div>
         </div>
       </div>
 
-      
     </div>
   
   </div>

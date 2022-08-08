@@ -13,6 +13,7 @@ require('jquery')
 global.$ = global.jQuery = require('jquery');
 var dt      = require( 'datatables.net' );
 require("packs/brands")
+require("packs/cart")
 
 Rails.start()
 Turbolinks.start()
